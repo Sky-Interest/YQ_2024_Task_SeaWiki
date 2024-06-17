@@ -22,7 +22,7 @@ const routes = [
         name: '用户管理',
         component: UserMananger,
         meta: { requiresAuth: true }, // 标记需要登录的路由
-        
+
       },
 
     ]
@@ -49,7 +49,7 @@ const routes = [
         path:"/userMananger",
         name:"查询用户",
         component:UserMananger,
-        
+
       },
       {
         path:"/register",

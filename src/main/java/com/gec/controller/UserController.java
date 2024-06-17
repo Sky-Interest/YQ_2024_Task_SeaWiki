@@ -54,4 +54,11 @@ public class UserController {
         PageRequest request = PageRequest.of(page,size);
         return userRepository.findAll(request);
     }
+
+    @GetMapping("/deleteUser")
+    public  R deleteUser(Integer userId){
+        //删除根据用户ID
+        userRepository.deleteById(userId);
+        return R.ok("删除成功").setData("success");
+    }
 }

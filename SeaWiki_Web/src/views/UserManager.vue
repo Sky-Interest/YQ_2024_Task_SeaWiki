@@ -82,7 +82,8 @@ export default {
                 type: 'warning'
             }).then(() => {
                 axios.get('http://localhost:8088/deleteUser?userId=' + rowId).then(function (resp) {
-                        if (resp.data === 'success') {
+                  console.log(resp.data.data);
+                        if (resp.data.data === 'success') {
                             console.log('delete  success....')
                             window.location.reload()//刷新界面
                         }
@@ -98,7 +99,7 @@ export default {
                 });
             });
 
-           
+
         }
     },
     created() {

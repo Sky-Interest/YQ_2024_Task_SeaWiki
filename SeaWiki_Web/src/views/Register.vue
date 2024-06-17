@@ -71,7 +71,7 @@
                             .then(response => {
                                 if(response.data.code===20000){
                                     //使用vue-router 路由到指定页面，该方式称之为编程式导航
-                                    this.$router.push("/login");
+                                    this.$router.push("/userlist");
                                     this.$message.success(response.data.msg)
                                 }else{
                                     console.log(response.data);
