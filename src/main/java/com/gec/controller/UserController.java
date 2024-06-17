@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Slf4j
@@ -60,5 +61,30 @@ public class UserController {
         //删除根据用户ID
         userRepository.deleteById(userId);
         return R.ok("删除成功").setData("success");
+    }
+
+
+    @GetMapping("/getUserById")
+    public R getUserById(Integer userId){
+        Optional<User> user = userRepository.findById(userId);
+        if(user.isPresent()){
+            return R.ok("查询成功").setData(user.get());
+        } else {
+            return R.error(20001, "用户不存在");
+        }
+    }
+
+    @PostMapping("/updateUser")
+    public R updateUser(@RequestBody User user){
+        Optional<User> optionalUser = userRepository.findById(user.getId());
+        if(optionalUser.isPresent()){
+            User existingUser = optionalUser.get();
+            existingUser.setUsername(user.getUsername());
+            existingUser.setPassword(MD5Util.encryptMD5(user.getPassword()));
+            userRepository.save(existingUser);
+            return R.ok("更新成功").setData(existingUser);
+        } else {
+            return R.error(20001, "用户不存在");
+        }
     }
 }

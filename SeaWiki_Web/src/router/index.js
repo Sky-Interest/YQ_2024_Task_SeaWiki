@@ -5,6 +5,7 @@ import Register from '../views/Register.vue'
 import Index from '../views/Index.vue'
 import UserMananger from '../views/UserManager.vue'
 import Main from '../views/Main.vue'
+import UpdateUser from "@/views/UpdateUser.vue";
 
 Vue.use(VueRouter)
 
@@ -37,6 +38,12 @@ const routes = [
     name: 'Register',
     component: Register,
     show: false
+  },
+  {
+    path: '/updateUser',
+    name: 'updateUser',
+    component: UpdateUser,
+    props: route => ({ id: route.query.id })
   },
   {
     path: '/index',
